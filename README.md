@@ -38,7 +38,7 @@ The MIT License. See the [license file](LICENSE) for details.
 [LICENSE BADGE]: https://img.shields.io/badge/license-MIT%20License-blue.svg?style=flat
 [LICENSE PAGE]: https://github.com/homelabsio/wgctrl-js/blob/master/LICENSE
 [NODE PAGE]: https://nodejs.org/
-[NODE VERSION BADGE]: https://img.shields.io/node/v/@homelabsio/wgctrl-js.svg?style=flat
-[NPM PAGE]: https://www.npmjs.com/package/@homelabsio/wgctrl-js
-[NPM VERSION BADGE]: https://img.shields.io/npm/v/homelabsio/wgctrl-js.svg?style=flat
-[NPM KEYWORDS BADGE]: https://img.shields.io/github/package-json/keywords/homelabsio/wgctrl-js.svg?style=flat
+[NODE VERSION BADGE]: https://img.shields.io/node/v/@homelabsio/wgctrl.svg?style=flat
+[NPM PAGE]: https://www.npmjs.com/package/@homelabsio/wgctrl
+[NPM VERSION BADGE]: https://img.shields.io/npm/v/@homelabsio/wgctrl.svg?style=flat
+[NPM KEYWORDS BADGE]: https://img.shields.io/github/package-json/keywords/homelabsio/wgctrl.svg?style=flat
