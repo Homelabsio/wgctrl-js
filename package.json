@@ -16,7 +16,9 @@
     "wireguard",
     "api"
   ],
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types":"lib/index.d.ts",
+  "files":["./lib"],
   "scripts": {
     "build-ts": "tsc",
     "build-gyp":"node-gyp build",
