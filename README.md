@@ -10,7 +10,7 @@ Wireguard control API for Node.js
 Install
 -------
 ```sh
-npm install @homelabsio/wgctrl-js
+npm install @homelabsio/wgctrl
 ```
 
 Usage
