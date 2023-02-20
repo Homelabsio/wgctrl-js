@@ -104,18 +104,18 @@ enum mnl_attr_data_type {
 
 #define mnl_attr_for_each(attr, nlh, offset) \
 	for ((attr) = mnl_nlmsg_get_payload_offset((nlh), (offset)); \
-	     mnl_attr_ok((attr), (char *)mnl_nlmsg_get_payload_tail(nlh) - (char *)(attr)); \
-	     (attr) = mnl_attr_next(attr))
+	    mnl_attr_ok((attr), (char *)mnl_nlmsg_get_payload_tail(nlh) - (char *)(attr)); \
+		(attr) = mnl_attr_next(attr))
 
 #define mnl_attr_for_each_nested(attr, nest) \
 	for ((attr) = mnl_attr_get_payload(nest); \
 	     mnl_attr_ok((attr), (char *)mnl_attr_get_payload(nest) + mnl_attr_get_payload_len(nest) - (char *)(attr)); \
-	     (attr) = mnl_attr_next(attr))
+		(attr) = mnl_attr_next(attr))
 
 #define mnl_attr_for_each_payload(payload, payload_size) \
 	for ((attr) = (payload); \
 	     mnl_attr_ok((attr), (char *)(payload) + payload_size - (char *)(attr)); \
-	     (attr) = mnl_attr_next(attr))
+		(attr) = mnl_attr_next(attr))
 
 #define MNL_CB_ERROR	-1
 #define MNL_CB_STOP	0
@@ -177,8 +177,8 @@ static void *mnl_nlmsg_get_payload_offset(const struct nlmsghdr *nlh, size_t off
 static bool mnl_nlmsg_ok(const struct nlmsghdr *nlh, int len)
 {
 	return len >= (int)sizeof(struct nlmsghdr) &&
-	       nlh->nlmsg_len >= sizeof(struct nlmsghdr) &&
-	       (int)nlh->nlmsg_len <= len;
+			nlh->nlmsg_len >= sizeof(struct nlmsghdr) &&
+			(int)nlh->nlmsg_len <= len;
 }
 
 static struct nlmsghdr *mnl_nlmsg_next(const struct nlmsghdr *nlh, int *len)
@@ -220,8 +220,8 @@ static void *mnl_attr_get_payload(const struct nlattr *attr)
 static bool mnl_attr_ok(const struct nlattr *attr, int len)
 {
 	return len >= (int)sizeof(struct nlattr) &&
-	       attr->nla_len >= sizeof(struct nlattr) &&
-	       (int)attr->nla_len <= len;
+			attr->nla_len >= sizeof(struct nlattr) &&
+			(int)attr->nla_len <= len;
 }
 
 static struct nlattr *mnl_attr_next(const struct nlattr *attr)
@@ -239,7 +239,7 @@ static int mnl_attr_type_valid(const struct nlattr *attr, uint16_t max)
 }
 
 static int __mnl_attr_validate(const struct nlattr *attr,
-			       enum mnl_attr_data_type type, size_t exp_len)
+					enum mnl_attr_data_type type, size_t exp_len)
 {
 	uint16_t attr_len = mnl_attr_get_payload_len(attr);
 	const char *attr_data = mnl_attr_get_payload(attr);
@@ -313,7 +313,7 @@ static int mnl_attr_validate(const struct nlattr *attr, enum mnl_attr_data_type 
 }
 
 static int mnl_attr_parse(const struct nlmsghdr *nlh, unsigned int offset,
-			  mnl_attr_cb_t cb, void *data)
+				mnl_attr_cb_t cb, void *data)
 {
 	int ret = MNL_CB_OK;
 	const struct nlattr *attr;
@@ -325,7 +325,7 @@ static int mnl_attr_parse(const struct nlmsghdr *nlh, unsigned int offset,
 }
 
 static int mnl_attr_parse_nested(const struct nlattr *nested, mnl_attr_cb_t cb,
-				 void *data)
+				void *data)
 {
 	int ret = MNL_CB_OK;
 	const struct nlattr *attr;
@@ -364,7 +364,7 @@ static const char *mnl_attr_get_str(const struct nlattr *attr)
 }
 
 static void mnl_attr_put(struct nlmsghdr *nlh, uint16_t type, size_t len,
-			 const void *data)
+				const void *data)
 {
 	struct nlattr *attr = mnl_nlmsg_get_payload_tail(nlh);
 	uint16_t payload_len = MNL_ALIGN(sizeof(struct nlattr)) + len;
@@ -413,19 +413,19 @@ static bool mnl_attr_put_check(struct nlmsghdr *nlh, size_t buflen,
 }
 
 static bool mnl_attr_put_u8_check(struct nlmsghdr *nlh, size_t buflen,
-				  uint16_t type, uint8_t data)
+				uint16_t type, uint8_t data)
 {
 	return mnl_attr_put_check(nlh, buflen, type, sizeof(uint8_t), &data);
 }
 
 static bool mnl_attr_put_u16_check(struct nlmsghdr *nlh, size_t buflen,
-				   uint16_t type, uint16_t data)
+				uint16_t type, uint16_t data)
 {
 	return mnl_attr_put_check(nlh, buflen, type, sizeof(uint16_t), &data);
 }
 
 static bool mnl_attr_put_u32_check(struct nlmsghdr *nlh, size_t buflen,
-				   uint16_t type, uint32_t data)
+				uint16_t type, uint32_t data)
 {
 	return mnl_attr_put_check(nlh, buflen, type, sizeof(uint32_t), &data);
 }
@@ -607,7 +607,7 @@ static int mnl_socket_bind(struct mnl_socket *nl, unsigned int groups, pid_t pid
 }
 
 static ssize_t mnl_socket_sendto(const struct mnl_socket *nl, const void *buf,
-				 size_t len)
+				size_t len)
 {
 	static const struct sockaddr_nl snl = {
 		.nl_family = AF_NETLINK
@@ -617,7 +617,7 @@ static ssize_t mnl_socket_sendto(const struct mnl_socket *nl, const void *buf,
 }
 
 static ssize_t mnl_socket_recvfrom(const struct mnl_socket *nl, void *buf,
-				   size_t bufsiz)
+					size_t bufsiz)
 {
 	ssize_t ret;
 	struct sockaddr_nl addr;
@@ -668,8 +668,8 @@ struct mnlg_socket {
 };
 
 static struct nlmsghdr *__mnlg_msg_prepare(struct mnlg_socket *nlg, uint8_t cmd,
-					   uint16_t flags, uint16_t id,
-					   uint8_t version)
+						uint16_t flags, uint16_t id,
+						uint8_t version)
 {
 	struct nlmsghdr *nlh;
 	struct genlmsghdr *genl;
@@ -688,7 +688,7 @@ static struct nlmsghdr *__mnlg_msg_prepare(struct mnlg_socket *nlg, uint8_t cmd,
 }
 
 static struct nlmsghdr *mnlg_msg_prepare(struct mnlg_socket *nlg, uint8_t cmd,
-					 uint16_t flags)
+					uint16_t flags)
 {
 	return __mnlg_msg_prepare(nlg, cmd, flags, nlg->id, nlg->version);
 }
@@ -752,11 +752,11 @@ static int mnlg_socket_recv_run(struct mnlg_socket *nlg, mnl_cb_t data_cb, void 
 
 	do {
 		err = mnl_socket_recvfrom(nlg->nl, nlg->buf,
-					  mnl_ideal_socket_buffer_size());
+					mnl_ideal_socket_buffer_size());
 		if (err <= 0)
 			break;
 		err = mnl_cb_run2(nlg->buf, err, nlg->seq, nlg->portid,
-				  data_cb, data, mnlg_cb_array, MNL_ARRAY_SIZE(mnlg_cb_array));
+				data_cb, data, mnlg_cb_array, MNL_ARRAY_SIZE(mnlg_cb_array));
 	} while (err > 0);
 
 	return err;
@@ -819,7 +819,7 @@ static struct mnlg_socket *mnlg_socket_open(const char *family_name, uint8_t ver
 	nlg->portid = mnl_socket_get_portid(nlg->nl);
 
 	nlh = __mnlg_msg_prepare(nlg, CTRL_CMD_GETFAMILY,
-				 NLM_F_REQUEST | NLM_F_ACK, GENL_ID_CTRL, 1);
+				NLM_F_REQUEST | NLM_F_ACK, GENL_ID_CTRL, 1);
 	mnl_attr_put_strz(nlh, CTRL_ATTR_FAMILY_NAME, family_name);
 
 	if (mnlg_socket_send(nlg, nlh) < 0) {
@@ -1497,10 +1497,10 @@ static void encode_base64(char dest[static 4], const uint8_t src[static 3])
 
 	for (i = 0; i < 4; ++i)
 		dest[i] = input[i] + 'A'
-			  + (((25 - input[i]) >> 8) & 6)
-			  - (((51 - input[i]) >> 8) & 75)
-			  - (((61 - input[i]) >> 8) & 15)
-			  + (((62 - input[i]) >> 8) & 3);
+				+ (((25 - input[i]) >> 8) & 6)
+				- (((51 - input[i]) >> 8) & 75)
+				- (((61 - input[i]) >> 8) & 15)
+				+ (((62 - input[i]) >> 8) & 3);
 
 }
 
