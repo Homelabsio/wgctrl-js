@@ -333,6 +333,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports["getDevices"] = Napi::Function::New(env, GetDevices);
   exports["getDevice"] = Napi::Function::New(env, GetDevice);
   exports["addDevice"] = Napi::Function::New(env, AddDevice);
+  exports["setDevice"] = Napi::Function::New(env,SetDevice);
   exports["deleteDevice"] = Napi::Function::New(env, DeleteDevice);
   exports["generatePublicKey"] = Napi::Function::New(env, GeneratePublicKey);
   exports["generatePrivateKey"] = Napi::Function::New(env, GeneratePrivateKey);
