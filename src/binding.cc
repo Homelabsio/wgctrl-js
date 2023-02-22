@@ -330,14 +330,14 @@ Napi::Value GeneratePresharedKey(const Napi::CallbackInfo &info) {
 }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
-  exports["getDevices"] = Napi::Function::New(env, GetDevices);
-  exports["getDevice"] = Napi::Function::New(env, GetDevice);
-  exports["addDevice"] = Napi::Function::New(env, AddDevice);
-  exports["setDevice"] = Napi::Function::New(env,SetDevice);
-  exports["deleteDevice"] = Napi::Function::New(env, DeleteDevice);
-  exports["generatePublicKey"] = Napi::Function::New(env, GeneratePublicKey);
-  exports["generatePrivateKey"] = Napi::Function::New(env, GeneratePrivateKey);
-  exports["generatePresharedKey"] = Napi::Function::New(env, GeneratePresharedKey);
+  exports["nativeGetDevices"] = Napi::Function::New(env, GetDevices);
+  exports["nativeGetDevice"] = Napi::Function::New(env, GetDevice);
+  exports["nativeAddDevice"] = Napi::Function::New(env, AddDevice);
+  exports["nativeSetDevice"] = Napi::Function::New(env,SetDevice);
+  exports["nativeDeleteDevice"] = Napi::Function::New(env, DeleteDevice);
+  exports["nativeGeneratePublicKey"] = Napi::Function::New(env, GeneratePublicKey);
+  exports["nativeGeneratePrivateKey"] = Napi::Function::New(env, GeneratePrivateKey);
+  exports["nativeGeneratePresharedKey"] = Napi::Function::New(env, GeneratePresharedKey);
 
   return exports;
 }
