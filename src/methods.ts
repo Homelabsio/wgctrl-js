@@ -1,13 +1,13 @@
 import bindings = require('bindings');
 const {
-    nativeGetDevices,
-    nativeGetDevice,
-    nativeAddDevice,
-    nativeSetDevice,
-    nativeDeleteDevice,
-    nativeGeneratePublicKey,
-    nativeGeneratePrivateKey,
-    nativeGeneratePresharedKey,
+	nativeGetDevices,
+	nativeGetDevice,
+	nativeAddDevice,
+	nativeSetDevice,
+	nativeDeleteDevice,
+	nativeGeneratePublicKey,
+	nativeGeneratePrivateKey,
+	nativeGeneratePresharedKey,
 } = bindings('wg');
 
 // tslint:disable:no-empty
@@ -27,5 +27,13 @@ function generatePrivateKey(): void {}
 // tslint:disable:no-empty
 function generatePresharedKey(): void {}
 
-
-export { getDevices, getDevice, addDevice, setDevice, deleteDevice, generatePublicKey, generatePrivateKey, generatePresharedKey }
+export {
+	getDevices,
+	getDevice,
+	addDevice,
+	setDevice,
+	deleteDevice,
+	generatePublicKey,
+	generatePrivateKey,
+	generatePresharedKey,
+};
