@@ -261,7 +261,7 @@ Napi::Value SetDevice(const Napi::CallbackInfo &info) {
           auto cidr = allowedip_s.substr(pos + 1);
           if (v6) {
             allowedip->family = AF_INET6;
-            if (inet_pton(AF_INET, ip.c_str(), &allowedip->ip6) != 1) {
+            if (inet_pton(AF_INET6, ip.c_str(), &allowedip->ip6) != 1) {
               NAPI_THROW(Napi::TypeError::New(env, "Invalid IPv6 address"), {});
             }
           } else {
