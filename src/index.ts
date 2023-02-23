@@ -1,4 +1,4 @@
-export { isValidIP } from './utils';
+export { isValidIP, isValidIP4, isValidIP6 } from './utils';
 export { Peer } from './peer.class';
 export { Device } from './device.class';
 export {

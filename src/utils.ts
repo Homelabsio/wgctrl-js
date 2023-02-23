@@ -5,20 +5,38 @@ const v6Regex =
 /**
  * @param {string} ip The IP to be tested with or without cidr notation e.g
  *                    127.0.0.1/8 or fe80::1/64 or 127.0.0.1 or fe80::1
- * @returns {boolean} True/False on whether ip is a valid IP
+ * @returns {boolean} True if ip is valid / False if malformed
  */
 function isValidIP(ip: string): boolean {
-	const slash = ip.indexOf('/');
-	// tslint:disable:prefer-const
-	let stripped = '';
-	if (slash !== -1) {
-		stripped = ip.substring(0, slash);
-	} else {
-		// Bare IP without cidr notation implying host route e.g /32 for v4 or /128 for v6
-		stripped = ip;
-	}
-
-	return v4Regex.test(stripped) || v6Regex.test(stripped);
+	const parts = ip.split('/');
+	const stripped = parts[0];
+	// (validv4 OR validv6) AND (parts.length EQ 1 OR parts.length EQ 2))
+	return (v4Regex.test(stripped) || v6Regex.test(stripped)) && (parts.length === 1 || parts.length === 2);
 }
 
-export { isValidIP };
+/**
+ * @param {string} ip The IP to be tested with or without cidr notation e.g
+ *                    127.0.0.1/8 or 127.0.0.1
+ * @returns {boolean} True if ip is valid / False if malformed
+ */
+function isValidIP4(ip: string): boolean {
+	const parts = ip.split('/');
+	const stripped = parts[0];
+	// (validv4) AND (parts.length EQ 1 OR parts.length EQ 2))
+	return (v4Regex.test(stripped)) && (parts.length === 1 || parts.length === 2);
+}
+
+/**
+ * @param {string} ip The IP to be tested with or without cidr notation e.g
+ *                    fe80::1/64 or fe80::1
+ * @returns {boolean} True if ip is valid / False if malformed
+ */
+function isValidIP6(ip: string): boolean {
+	const parts = ip.split('/');
+	const stripped = parts[0];
+	// (validv6) AND (parts.length EQ 1 OR parts.length EQ 2))
+	return (v6Regex.test(stripped)) && (parts.length === 1 || parts.length === 2);
+}
+
+
+export { isValidIP, isValidIP4, isValidIP6 };
