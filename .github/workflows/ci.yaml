@@ -39,5 +39,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: tarball
-        path: homelabsio-wgctrl-*.tar.gz
+        path: homelabsio-wgctrl-*.tgz
         if-no-files-found: warn
