@@ -33,7 +33,7 @@
   "scripts": {
     "install":"node-gyp rebuild",
     "build-ts": "tsc",
-    "build-gyp": "node-gyp build",
+    "build-gyp": "node-gyp rebuild",
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "lint": "tslint -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 0"
