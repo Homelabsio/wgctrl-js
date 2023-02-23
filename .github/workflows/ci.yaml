@@ -38,6 +38,6 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: tarball
+        name: tarball-node-${{ matrix.node-version }}
         path: homelabsio-wgctrl-*.tgz
         if-no-files-found: warn
