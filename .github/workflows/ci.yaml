@@ -21,11 +21,23 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16
-    - name: Run npm ci 
+    - name: CI
       run: npm ci
-    - name: Run npm format
+    - name: Format
       run: npm run format
-    - name: Run npm lint
+    - name: Lint
       run: npm run lint
-    - name: Run npm test
+    - name: Build gyp
+      run: npm run build-gyp
+    - name: Build ts
+      run: npm run build-ts
+    - name: Test
       run: npm run test
+    - name: Pack
+      run: npm pack
+    - name: Upload artifact
+      uses: actions/upload-artifacts@v3
+      with:
+        name: tarball
+        path: homelabsio-wgctrl-*.tar.gz
+        if-no-files-found: warn
