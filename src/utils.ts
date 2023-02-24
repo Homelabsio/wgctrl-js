@@ -37,6 +37,15 @@ function isValidIP6(ip: string): boolean {
 	// (validv6) AND (parts.length EQ 1 OR parts.length EQ 2))
 	return (v6Regex.test(stripped)) && (parts.length === 1 || parts.length === 2);
 }
+/**
+ * 
+ * @param key JSON Key
+ * @param value JSON Value
+ * @returns value for everything, except bigint which is returned as string
+ */
+function bigIntReplacer(key: string, value: any ): any {
+	return typeof value === "bigint" ? value.toString() : value
+}
 
 
-export { isValidIP, isValidIP4, isValidIP6 };
+export { isValidIP, isValidIP4, isValidIP6, bigIntReplacer };
