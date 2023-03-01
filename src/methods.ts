@@ -1,3 +1,5 @@
+import { Device } from './device.class';
+import { Peer } from './peer.class';
 import bindings = require('bindings');
 const {
 	nativeGetDevices,
@@ -10,10 +12,15 @@ const {
 	nativeGeneratePresharedKey,
 } = bindings('wg');
 
-// tslint:disable:no-empty
-function getDevices(): void {}
-// tslint:disable:no-empty
-function getDevice(): void {}
+function getDevices(): string[] {
+	return nativeGetDevices() as string[];
+}
+
+function getDevice(name: string): Device {
+	const rawdev = nativeGetDevice(name) as Device;
+	const retdev: Device = new Device(rawdev.name, rawdev.ifindex);
+	return retdev;
+}
 // tslint:disable:no-empty
 function addDevice(): void {}
 // tslint:disable:no-empty
@@ -24,8 +31,13 @@ function deleteDevice(): void {}
 function generatePublicKey(): void {}
 // tslint:disable:no-empty
 function generatePrivateKey(): void {}
-// tslint:disable:no-empty
-function generatePresharedKey(): void {}
+
+function generatePresharedKey(): any {
+	const psk = nativeGeneratePresharedKey();
+	// tslint:disable:no-console
+	console.log(psk);
+	return psk;
+}
 
 export {
 	getDevices,
