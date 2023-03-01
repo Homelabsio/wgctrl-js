@@ -4,3 +4,4 @@ reference
 /lib
 /tmp
 tests/tunnel.conf
+tests/notes.ts
