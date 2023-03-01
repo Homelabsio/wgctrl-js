@@ -1,5 +1,5 @@
-export { isValidIP, isValidIP4, isValidIP6 } from './utils';
-export { Peer } from './peer.class';
+export { isValidIP, isValidIP4, isValidIP6, bigIntReplacer } from './utils';
+export { Peer, allowedIPResult } from './peer.class';
 export { Device } from './device.class';
 export {
 	getDevices,
