@@ -19,21 +19,23 @@ jobs:
       uses: actions/checkout@v3
     - name: Use Node.js
       uses: actions/setup-node@v3
-      with:
-        node-version: 16
-    - name: CI
+      # with:
+      #   node-version: 16
+    - name: Install dependencies
       run: npm ci
-    - name: Format
+    - name: Format typescript
       run: npm run format
-    - name: Lint
-      run: npm run lint
+    - name: Lint typescript
+      run: npm run lint-ts
+    # - name: Lint commits
+    #   run: npm run lint-commit
     - name: Build gyp
       run: npm run build-gyp
-    - name: Build ts
+    - name: Build typescript
       run: npm run build-ts
-    - name: Test
+    - name: Test typescript
       run: npm run test
-    - name: Pack
+    - name: Create artifact
       run: npm pack
     - name: Upload artifact
       uses: actions/upload-artifact@v3
