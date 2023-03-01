@@ -1,7 +1,14 @@
 import { Peer } from './peer.class';
 
+enum PeerResult {
+	ENOERROR = 0,
+	EINVALID = -1,
+	EDUPLICATE = -2,
+	ENOTFOUND = -3,
+}
+
 class Device {
-	private _name: string;
+	readonly name: string;
 	// readonly?
 	private _ifindex: number;
 	// readonly?
@@ -10,19 +17,24 @@ class Device {
 	privateKey?: string | null;
 	fwmark?: number;
 	listenport?: number;
-	peers?: Peer[];
-	constructor(name: string, ifindex: number) {
-		this._name = name;
-		this._ifindex = ifindex;
-	}
+	private _peers: Peer[] = [];
 
-	public get name(): string {
-		return this._name;
+	constructor(name: string, ifindex?: number) {
+		this.name = name;
+		if (ifindex !== undefined) {
+			this._ifindex = ifindex;
+		} else {
+			this._ifindex = 9999;
+		}
 	}
 
 	public get ifindex(): number {
 		return this._ifindex;
 	}
+	// tslint:disable:no-empty
+	addPeer(peer: Peer) {}
+	// tslint:disable:no-empty
+	removePeer(peer: Peer) {}
 }
 
-export { Device };
+export { Device, PeerResult };
