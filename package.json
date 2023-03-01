@@ -33,12 +33,13 @@
   "scripts": {
     "preinstall": "[ -d '.git' ] && git config core.hooksPath .githooks",
     "install": "node-gyp rebuild",
+    "commit":"commit",
     "build-ts": "tsc",
     "build-gyp": "node-gyp rebuild",
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "lint-ts": "tslint -p tsconfig.json",
     "lint-commit": "commitlint -V --from=2a91d3ba",
-    "test": "exit 0;"
+    "test": "jest"
   },
   "dependencies": {
     "bindings": "^1.5.0",
