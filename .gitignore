@@ -3,3 +3,4 @@ build
 reference
 /lib
 /tmp
+tests/tunnel.conf
