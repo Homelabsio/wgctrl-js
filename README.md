@@ -12,6 +12,12 @@ Wireguard control API for Node.js
 npm install @homelabsio/wgctrl
 ```
 
+# Runtime Requirements
+@homelabsio/wgctrl performs various network configuration tasks which require that the node process either:
+* be executing as root [NOT PREFERRED]  
+*OR*
+* have CAP_NET_ADMIN [PREFERRED]
+
 # Usage
 
 ### Modify existing Wireguard device
@@ -21,7 +27,7 @@ import { Peer, Device, getDevices, getDevice, setDevice } from '@homelabsio/wgct
 
 // Get array of current WireGuard devices
 let devs: string[] = getDevices();
-console.log (devs); // [ 'wg0', 'wg1',  'wg2' ]
+console.log (devs); // [ 'wg0', 'wg1', 'wg2' ]
 
 const wg0: Device = getDevice('');
 let newPeer: Peer = new Peer('BCBqOfgqPK2RQO+z1QPYHvlxcOG41m2385dvjJcj5mE=');
