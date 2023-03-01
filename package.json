@@ -1,6 +1,6 @@
 {
   "name": "@homelabsio/wgctrl",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "WireGuard Control API for Node.js",
   "author": "troopert <sjohnson@homelabs.io>",
   "license": "MIT",
@@ -33,7 +33,7 @@
   "scripts": {
     "preinstall": "[ -d '.git' ] && git config core.hooksPath .githooks",
     "install": "node-gyp rebuild",
-    "commit":"commit",
+    "commit": "commit",
     "build-ts": "tsc",
     "build-gyp": "node-gyp rebuild",
     "format": "prettier --write \"src/**/*.{ts,js}\"",
