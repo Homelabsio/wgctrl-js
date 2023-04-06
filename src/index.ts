@@ -1,6 +1,6 @@
 export { isValidIP, isValidIP4, isValidIP6, bigIntReplacer } from './utils';
 export { Peer, allowedIPResult } from './peer.class';
-export { Device } from './device.class';
+export { Device, PeerResult } from './device.class';
 export {
 	getDevices,
 	getDevice,
