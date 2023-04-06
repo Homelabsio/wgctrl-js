@@ -119,7 +119,7 @@ class Peer {
 				return allowedIPResult.ENOTFOUND;
 			}
 			// Remove ip from allowedIPs using filter to return all allowedIP that are NOT ip
-			this._allowedIPs = this._allowedIPs.filter((pfx) => pfx !== ip);
+			this._allowedIPs = this._allowedIPs.filter((pfx: string) => pfx !== ip);
 			return allowedIPResult.ENOERROR;
 		} else {
 			return allowedIPResult.EINVALID;
