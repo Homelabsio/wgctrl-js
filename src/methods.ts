@@ -27,15 +27,19 @@ function addDevice(): void {}
 function setDevice(): void {}
 // tslint:disable:no-empty
 function deleteDevice(): void {}
-// tslint:disable:no-empty
-function generatePublicKey(): void {}
-// tslint:disable:no-empty
-function generatePrivateKey(): void {}
 
-function generatePresharedKey(): any {
-	const psk = nativeGeneratePresharedKey();
-	// tslint:disable:no-console
-	console.log(psk);
+function generatePublicKey(privKey: any): string {
+	const pubKey: string = nativeGeneratePublicKey(privKey);
+	return pubKey;
+}
+
+function generatePrivateKey(): string {
+	const privKey: string = nativeGeneratePrivateKey();
+	return privKey;
+}
+
+function generatePresharedKey(): string {
+	const psk: string = nativeGeneratePresharedKey();
 	return psk;
 }
 
